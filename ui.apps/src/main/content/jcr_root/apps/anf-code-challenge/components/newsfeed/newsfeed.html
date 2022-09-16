@@ -1,0 +1,15 @@
+<sly data-sly-test="${wcmmode.edit}">${"Edit Image Component"}</sly>
+<sly data-sly-use.newsModel="com.anf.core.models.NewsFeedModel"/>
+<sly data-sly-list.newsItem="${newsModel.newsItemsList}">
+    <div class="row">
+        <div class="column" style="background-color:#aaa;">
+            <img src="${newsItem.image}">
+        </div>
+        <div class="column" style="background-color:#bbb;">
+            <h2>${newsItem.title}</h2>
+            <p>${newsModel.date} | ${newsItem.author}</p>
+            ${newsItem.description @context='html'}
+        </div>
+    </div>
+</sly>
+

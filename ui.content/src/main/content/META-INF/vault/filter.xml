@@ -4,4 +4,6 @@
     <filter root="/content/anf-code-challenge" mode="merge"/>
     <filter root="/content/dam/anf-code-challenge" mode="merge"/>
     <filter root="/content/experience-fragments/anf-code-challenge" mode="merge"/>
+    <filter root="/conf/global/settings/workflow/launcher/config/page-creation-config" mode="merge"/>
+    <filter root="/conf/global/settings/workflow/models/update-page-properties" mode="merge"/>
 </workspaceFilter>
