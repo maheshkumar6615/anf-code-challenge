@@ -1,7 +1,6 @@
 package com.anf.core.services;
 
 import com.anf.core.beans.NewsItemBean;
-import org.apache.sling.api.resource.ResourceResolver;
 
 import java.util.List;
 

@@ -49,8 +49,9 @@ public class NewsFeedServiceImpl implements NewsFeedService {
         List<NewsItemBean> newsItemsList = new ArrayList<>();
         Map<String, Object> param = new HashMap<>();
         param.put(resourceResolverFactory.SUBSERVICE, "readService");
+        ResourceResolver resourceResolver = null;
         try {
-            ResourceResolver resourceResolver = resourceResolverFactory.getServiceResourceResolver(param);
+            resourceResolver = resourceResolverFactory.getServiceResourceResolver(param);
             Resource resource = resourceResolver.getResource(newsFeedPath);
             Node node = resource.adaptTo(Node.class);
             if (node.hasNodes()) {
@@ -67,6 +68,10 @@ public class NewsFeedServiceImpl implements NewsFeedService {
             }
         } catch (RepositoryException | LoginException e) {
             logger.error("Exception in news feed service: {}", e.getMessage());
+        }finally {
+            if(resourceResolver.isLive()){
+                resourceResolver.close();
+            }
         }
         return newsItemsList;
     }

@@ -1,2 +1,3 @@
 #base=js
+jquery.min.js
 form.js
