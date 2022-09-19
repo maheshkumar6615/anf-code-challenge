@@ -4,7 +4,6 @@ import com.anf.core.beans.NewsItemBean;
 import com.anf.core.services.impl.NewsFeedServiceImpl;
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
-import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,7 +18,6 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 
 @ExtendWith({AemContextExtension.class, MockitoExtension.class})
@@ -53,7 +51,7 @@ public class NewsFeedModelTest {
     }
 
     @Test
-    void testNewsFeedList() throws Exception {
+    void testNewsFeedList() {
         newsfeed = context.request().adaptTo(NewsFeedModel.class);
         NewsItemBean bean1 = new NewsItemBean("News feed1", "Mahesh", "mahesh description", "/content/dam/photo.jpeg");
         NewsItemBean bean2 = new NewsItemBean("News feed2", "Mahesh", "mahesh description", "/content/dam/photo.jpeg");

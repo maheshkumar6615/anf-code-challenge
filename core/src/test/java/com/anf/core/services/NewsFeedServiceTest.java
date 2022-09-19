@@ -12,7 +12,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javax.jcr.Node;
-import javax.jcr.RepositoryException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,7 +43,7 @@ public class NewsFeedServiceTest {
 
 
     @Test
-    public void Validate() throws LoginException, RepositoryException {
+    public void Validate() throws LoginException {
         Map<String, Object> param = new HashMap<>();
         param.put(resourceResolverFactory.SUBSERVICE, "readService");
         when(resourceResolverFactory.getServiceResourceResolver(param)).thenReturn(resourceResolver);
