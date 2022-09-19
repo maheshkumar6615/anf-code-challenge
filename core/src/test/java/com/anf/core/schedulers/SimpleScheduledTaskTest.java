@@ -34,9 +34,9 @@ import static org.mockito.Mockito.when;
 @ExtendWith(AemContextExtension.class)
 class SimpleScheduledTaskTest {
 
-    private final SimpleScheduledTask fixture = new SimpleScheduledTask();
+    private SimpleScheduledTask fixture = new SimpleScheduledTask();
 
-    private final TestLogger logger = TestLoggerFactory.getTestLogger(fixture.getClass());
+    private TestLogger logger = TestLoggerFactory.getTestLogger(fixture.getClass());
 
     @BeforeEach
     void setup() {

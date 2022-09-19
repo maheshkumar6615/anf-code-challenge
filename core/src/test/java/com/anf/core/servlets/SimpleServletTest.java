@@ -32,7 +32,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ExtendWith(AemContextExtension.class)
 class SimpleServletTest {
 
-    private final SimpleServlet fixture = new SimpleServlet();
+    private SimpleServlet fixture = new SimpleServlet();
 
     @Test
     void doGet(AemContext context) throws ServletException, IOException {
