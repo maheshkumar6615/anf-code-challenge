@@ -1,7 +1,7 @@
 package com.anf.core.models;
 
 import com.adobe.cq.export.json.ExporterConstants;
-import com.anf.core.services.FetchDataService;
+import com.anf.core.services.GetCountriesService;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.models.annotations.DefaultInjectionStrategy;
 import org.apache.sling.models.annotations.Exporter;
@@ -16,7 +16,7 @@ import javax.annotation.PostConstruct;
 public class CountriesListModel {
 
     @OSGiService
-    private FetchDataService fetchDataService;
+    private GetCountriesService fetchDataService;
 
     @Self
     private SlingHttpServletRequest request;

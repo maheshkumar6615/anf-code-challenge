@@ -57,7 +57,7 @@ public class HelloWorldModelServerSideTest {
         new AdminResolverCallable() {
             @Override
             protected void call0(ResourceResolver rr) throws Exception {
-                rr.create(rr.getResource("/tmp"), "testResource", Collections.<String, Object> emptyMap());
+                rr.create(rr.getResource("/tmp"), "testResource", Collections.emptyMap());
             }
         }.call();
     }

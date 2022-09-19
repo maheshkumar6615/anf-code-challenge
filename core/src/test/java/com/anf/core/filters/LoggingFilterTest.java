@@ -42,9 +42,9 @@ import static org.mockito.Mockito.mock;
 @ExtendWith(AemContextExtension.class)
 class LoggingFilterTest {
 
-    private LoggingFilter fixture = new LoggingFilter();
+    private final LoggingFilter fixture = new LoggingFilter();
 
-    private TestLogger logger = TestLoggerFactory.getTestLogger(fixture.getClass());
+    private final TestLogger logger = TestLoggerFactory.getTestLogger(fixture.getClass());
 
     @BeforeEach
     void setup() {

@@ -43,6 +43,11 @@ public class NewsFeedServiceImpl implements NewsFeedService {
         newsFeedPath = config.news_feed_items();
     }
 
+    /**
+     * Reads all the newsItems under from the path present in configuration
+     *
+     * @return : List of all newsItems
+     * */
     @Override
     public List<NewsItemBean> getBlogDetails() {
         logger.debug("get newsItems called: {}", newsFeedPath);

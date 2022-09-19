@@ -17,3 +17,8 @@
   clear: both;
   padding: 50px;
 }
+
+.newsfeed img {
+    height: 290px;
+    width: 650px;
+}

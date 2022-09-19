@@ -2,6 +2,6 @@ package com.anf.core.services;
 
 import org.apache.sling.api.SlingHttpServletRequest;
 
-public interface ContentService {
+public interface SaveUserDetails {
 	String commitUserDetails(SlingHttpServletRequest request);
 }

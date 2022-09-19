@@ -1,0 +1,29 @@
+{
+    "newsData": {
+        "jcr:primaryType": "nt:unstructured",
+        "newsfeed1":{
+        	"title":"News feed1",
+        	"author":"Mahesh",
+        	"description":"Newly married",
+        	"urlImage":"/content/dam/marriage-photo.jpeg"
+        },
+        "newsfeed2":{
+        	"title":"News feed2",
+        	"author":"Mahesh",
+        	"description":"Newly married",
+        	"urlImage":"/content/dam/marriage-photo.jpeg"
+        },
+        "newsfeed3":{
+        	"title":"News feed4",
+        	"author":"Mahesh",
+        	"description":"Newly married",
+        	"urlImage":"/content/dam/marriage-photo.jpeg"
+        },
+        "newsfeed4":{
+        	"title":"News feed4",
+        	"author":"Mahesh",
+        	"description":"Newly married",
+        	"urlImage":"/content/dam/marriage-photo.jpeg"
+        }
+    }
+}

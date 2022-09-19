@@ -81,7 +81,7 @@ public class SlingServerSideTestsBase extends SlingTestBase {
             final int timeout = TimeoutsProvider.getInstance().getTimeout(30);
             final int intervalMsec = TimeoutsProvider.getInstance().getTimeout(500);
             log.info("Checking that {} returns status {}, timeout={} seconds",
-                    new Object[] { path, status, timeout });
+                    path, status, timeout);
             servletChecker.check(path, status, timeout, intervalMsec);
             servletOk = true;
             log.info("{} is ready, returns expected content", path);

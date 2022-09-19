@@ -32,9 +32,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SimpleResourceListenerTest {
 
-    private SimpleResourceListener fixture = new SimpleResourceListener();
+    private final SimpleResourceListener fixture = new SimpleResourceListener();
 
-    private TestLogger logger = TestLoggerFactory.getTestLogger(fixture.getClass());
+    private final TestLogger logger = TestLoggerFactory.getTestLogger(fixture.getClass());
 
     @Test
     void handleEvent() {
