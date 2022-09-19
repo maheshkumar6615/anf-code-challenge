@@ -80,7 +80,7 @@ public class FetchPageServiceImpl implements FetchPageService {
         JSONObject json = new JSONObject();
         Map<String, Object> param = new HashMap<>();
         param.put(resourceResolverFactory.SUBSERVICE, "readService");
-        String sqlStatement = "SELECT * FROM [cq:Page] AS page WHERE ISDESCENDANTNODE(page ,\"/content/anf-code-challenge/us/en\") " +
+        String sqlStatement = "SELECT * FROM [cq:Page] AS page WHERE ISDESCENDANTNODE(\"/content/anf-code-challenge/us/en\") " +
                 "AND page.[jcr:content/anfCodeChallenge] IS NOT NULL";
 
         try (ResourceResolver resourceResolver = resourceResolverFactory.getServiceResourceResolver(param)){
@@ -98,7 +98,7 @@ public class FetchPageServiceImpl implements FetchPageService {
                 json.put(node.getName(), node.getPath());
             }
         } catch (RepositoryException | LoginException | JSONException e) {
-            logger.error("Exception in getPageList method: {}", e);
+            logger.error("Exception in getPageList method: {}", e.getMessage());
         }
         return json.toString();
     }

@@ -30,12 +30,10 @@ public class UserServlet extends SlingAllMethodsServlet {
     protected void doPost(final SlingHttpServletRequest request,
                           final SlingHttpServletResponse response) {
         try {
-            /*response.setContentType("application/json");
             response.setStatus(HttpServletResponse.SC_OK);
-            response.setCharacterEncoding(String.valueOf(StandardCharsets.UTF_8));*/
             response.getWriter().write(saveUserDetails.commitUserDetails(request));
         } catch (IOException e) {
-            logger.error("IO Exception in User Servlet: {}", e.getMessage());
+            logger.error("IOException in User Servlet: {}", e.getMessage());
         }
 
     }

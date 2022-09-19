@@ -76,7 +76,7 @@ public class SaveUserDetailsImpl implements SaveUserDetails {
             node.setProperty("country", request.getParameter("country"));
             session.save();
         } catch (RepositoryException | LoginException e) {
-            logger.error("repository exception when saving user details: {}", e);
+            logger.error("repository exception when saving user details: {}", e.getMessage());
         }
         return "Successful";
     }
@@ -98,7 +98,7 @@ public class SaveUserDetailsImpl implements SaveUserDetails {
             logger.debug("age: {}, min age: {}, max age: {}", age, minAge, maxAge);
             return getIntegerValue(age) > getIntegerValue(minAge) && getIntegerValue(age) < getIntegerValue(maxAge);
         } catch (RepositoryException | LoginException e) {
-            logger.error("Exception when validating age: {}", e);
+            logger.error("Exception when validating age: {}", e.getMessage());
         }
         return false;
     }

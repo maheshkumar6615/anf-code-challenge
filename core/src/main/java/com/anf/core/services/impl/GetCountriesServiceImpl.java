@@ -57,7 +57,7 @@ public class GetCountriesServiceImpl implements GetCountriesService {
                 logger.debug("Datasource from <{}> created", countriesJsonDamPath);
             }
         } catch (final IOException e) {
-            logger.error("Could not close JSON input stream from node <{}>", countriesJsonDamPath, e);
+            logger.error("Could not close JSON input stream from node <{}>", countriesJsonDamPath, e.getMessage());
         }
         return request;
     }
