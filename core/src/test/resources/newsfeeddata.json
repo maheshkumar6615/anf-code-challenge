@@ -1,29 +1,31 @@
 {
-    "newsData": {
         "jcr:primaryType": "nt:unstructured",
         "newsfeed1":{
+        	"jcr:primaryType": "nt:unstructured",
         	"title":"News feed1",
         	"author":"Mahesh",
-        	"description":"Newly married",
-        	"urlImage":"/content/dam/marriage-photo.jpeg"
+        	"description":"Mahesh Description",
+        	"urlImage":"/content/dam/photo.jpeg"
         },
         "newsfeed2":{
+        	"jcr:primaryType": "nt:unstructured",
         	"title":"News feed2",
         	"author":"Mahesh",
-        	"description":"Newly married",
-        	"urlImage":"/content/dam/marriage-photo.jpeg"
+        	"description":"Mahesh Description",
+        	"urlImage":"/content/dam/photo.jpeg"
         },
         "newsfeed3":{
+        	"jcr:primaryType": "nt:unstructured",
         	"title":"News feed4",
         	"author":"Mahesh",
-        	"description":"Newly married",
-        	"urlImage":"/content/dam/marriage-photo.jpeg"
+        	"description":"Mahesh Description",
+        	"urlImage":"/content/dam/photo.jpeg"
         },
         "newsfeed4":{
+        	"jcr:primaryType": "nt:unstructured",
         	"title":"News feed4",
         	"author":"Mahesh",
-        	"description":"Newly married",
-        	"urlImage":"/content/dam/marriage-photo.jpeg"
+        	"description":"Mahesh Description",
+        	"urlImage":"/content/dam/photo.jpeg"
         }
-    }
 }

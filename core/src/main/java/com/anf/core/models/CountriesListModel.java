@@ -16,13 +16,13 @@ import javax.annotation.PostConstruct;
 public class CountriesListModel {
 
     @OSGiService
-    private GetCountriesService fetchDataService;
+    private GetCountriesService getCountriesService;
 
     @Self
     private SlingHttpServletRequest request;
 
     @PostConstruct
     protected void init(){
-        request = fetchDataService.getDataFromSource(request);
+        request = getCountriesService.getDataFromSource(request);
     }
 }

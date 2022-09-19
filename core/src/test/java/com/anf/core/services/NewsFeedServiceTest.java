@@ -12,14 +12,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javax.jcr.Node;
-import javax.jcr.NodeIterator;
-import javax.jcr.Property;
 import javax.jcr.RepositoryException;
 import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -27,45 +24,34 @@ public class NewsFeedServiceTest {
 
     AemContext context = new AemContext(ResourceResolverType.JCR_MOCK);
     NewsFeedService newsFeedService;
+    private static final String TEST_CONTENT_DATA_JSON = "/newsfeeddata.json";
     ResourceResolverFactory resourceResolverFactory;
     ResourceResolver resourceResolver;
     Resource resource;
     Node node;
-    NodeIterator nodeIterator;
-    Property property;
+
 
     @BeforeEach
     public void setUp() throws RepositoryException {
-        node = mock(Node.class);
-        nodeIterator = mock(NodeIterator.class);
+        context.load().json(TEST_CONTENT_DATA_JSON, "/var/commerce/products/anf-code-challenge/newsData");
         resourceResolverFactory = mock(ResourceResolverFactory.class);
         resourceResolver = mock(ResourceResolver.class);
         resource = mock(Resource.class);
-        property = mock(Property.class);
-        node.setProperty("author","author-name");
-        //resource = context.resourceResolver().getResource("/var/commerce/products/anf-code-challenge/newsData");
+        node = mock(Node.class);
         context.registerService(ResourceResolverFactory.class, resourceResolverFactory);
         newsFeedService = context.registerInjectActivateService(new NewsFeedServiceImpl());
     }
 
-/*    @Test
+
+    @Test
     public void Validate() throws LoginException, RepositoryException {
         Map<String, Object> param = new HashMap<>();
         param.put(resourceResolverFactory.SUBSERVICE, "readService");
-        //Resource resource = context.resourceResolver().getResource("/resource1");
         when(resourceResolverFactory.getServiceResourceResolver(param)).thenReturn(resourceResolver);
         when(resourceResolver.getResource("/var/commerce/products/anf-code-challenge/newsData")).thenReturn(resource);
         when(resource.adaptTo(Node.class)).thenReturn(node);
-        when(node.hasNodes()).thenReturn(true);
-        when(node.getNodes()).thenReturn(nodeIterator);
-        when(nodeIterator.hasNext()).thenReturn(true);
-        when(nodeIterator.next()).thenReturn(node);
-        when(node.hasProperty(anyString())).thenReturn(true);
-        when(node.getProperty(anyString())).thenReturn(property);
-        when(property.getString()).thenReturn(anyString());
-        //assertEquals("author-name", newsFeedService.getBlogDetails().get(0).getAuthor());
+        assertEquals("Mahesh", newsFeedService.getBlogDetails().get(0).getAuthor());
         Assertions.assertDoesNotThrow(() -> newsFeedService.getBlogDetails());
-        //Assertions.assertDoesNotThrow(newsFeedService.getBlogDetails());
-    }*/
+    }
 
 }
