@@ -19,9 +19,7 @@ import java.util.List;
 public class NewsFeedModel {
 
     protected static final String RESOURCE_TYPE = "anf-code-challenge/components/newsfeed";
-
     private List<NewsItemBean> newsItemsList;
-
     private String date;
 
     @OSGiService

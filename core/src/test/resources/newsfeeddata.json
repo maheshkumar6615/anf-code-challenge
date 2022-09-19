@@ -1,31 +1,33 @@
 {
-        "jcr:primaryType": "nt:unstructured",
-        "newsfeed1":{
-        	"jcr:primaryType": "nt:unstructured",
-        	"title":"News feed1",
-        	"author":"Mahesh",
-        	"description":"Mahesh Description",
-        	"urlImage":"/content/dam/photo.jpeg"
-        },
-        "newsfeed2":{
-        	"jcr:primaryType": "nt:unstructured",
-        	"title":"News feed2",
-        	"author":"Mahesh",
-        	"description":"Mahesh Description",
-        	"urlImage":"/content/dam/photo.jpeg"
-        },
-        "newsfeed3":{
-        	"jcr:primaryType": "nt:unstructured",
-        	"title":"News feed4",
-        	"author":"Mahesh",
-        	"description":"Mahesh Description",
-        	"urlImage":"/content/dam/photo.jpeg"
-        },
-        "newsfeed4":{
-        	"jcr:primaryType": "nt:unstructured",
-        	"title":"News feed4",
-        	"author":"Mahesh",
-        	"description":"Mahesh Description",
-        	"urlImage":"/content/dam/photo.jpeg"
-        }
+  "jcr:primaryType": "nt:unstructured",
+  "newsfeed1": {
+    "jcr:primaryType": "nt:unstructured",
+    "title": "News feed1",
+    "author": "Mahesh",
+    "description": "Mahesh Description",
+    "urlImage": "/content/dam/photo.jpeg"
+  },
+  "newsfeed2": {
+    "jcr:primaryType": "nt:unstructured",
+    "author": "Mahesh",
+    "description": "Mahesh Description",
+    "urlImage": "/content/dam/photo.jpeg"
+  },
+  "newsfeed3": {
+    "jcr:primaryType": "nt:unstructured",
+    "title": "News feed4",
+    "description": "Mahesh Description",
+    "urlImage": "/content/dam/photo.jpeg"
+  },
+  "newsfeed4": {
+    "jcr:primaryType": "nt:unstructured",
+    "title": "News feed4",
+    "author": "Mahesh",
+    "urlImage": "/content/dam/photo.jpeg"
+  },
+  "newsfeed5": {
+    "jcr:primaryType": "nt:unstructured",
+    "title": "News feed4",
+    "author": "Mahesh"
+  }
 }

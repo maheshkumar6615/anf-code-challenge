@@ -31,7 +31,7 @@ public class FetchPageServiceImpl implements FetchPageService {
     private static final String ROOT_PATH = "/content/anf-code-challenge/us/en";
 
     @Reference
-    private ResourceResolverFactory resolverFactory;
+    private ResourceResolverFactory resourceResolverFactory;
 
     @Reference
     private QueryBuilder queryBuilder;
@@ -44,7 +44,6 @@ public class FetchPageServiceImpl implements FetchPageService {
 
     @Override
     public String getPages() {
-
         Map<String, String> map = new HashMap<>();
         map.put("type", "cq:Page");
         map.put("path", ROOT_PATH);
@@ -53,14 +52,11 @@ public class FetchPageServiceImpl implements FetchPageService {
         map.put("p.guessTotal", "10");
         map.put("p.limit", "10");
         Map<String, Object> param = new HashMap<>();
-        param.put(resolverFactory.SUBSERVICE, "readService");
-        ResourceResolver resourceResolver = null;
-        Session session = null;
+        param.put(resourceResolverFactory.SUBSERVICE, "readService");
         SearchResult result;
         JSONObject json = new JSONObject();
-        try {
-            resourceResolver = resolverFactory.getServiceResourceResolver(param);
-            session = resourceResolver.adaptTo(Session.class);
+        try (ResourceResolver resourceResolver = resourceResolverFactory.getServiceResourceResolver(param)){
+            Session session = resourceResolver.adaptTo(Session.class);
             Query query = queryBuilder.createQuery(PredicateGroup.create(map), session);
             result = query.getResult();
             for (Hit hit : result.getHits()) {
@@ -69,13 +65,6 @@ public class FetchPageServiceImpl implements FetchPageService {
             }
         } catch (LoginException | RepositoryException | JSONException e) {
             logger.error("Exception in Fetch Page Service: {}", e.getMessage());
-        }finally {
-            if(resourceResolver.isLive()){
-                resourceResolver.close();
-            }
-            if(session.isLive()){
-                session.logout();
-            }
         }
         return json.toString();
     }
@@ -90,15 +79,12 @@ public class FetchPageServiceImpl implements FetchPageService {
 
         JSONObject json = new JSONObject();
         Map<String, Object> param = new HashMap<>();
-        param.put(resolverFactory.SUBSERVICE, "readService");
-        ResourceResolver resourceResolver = null;
-        Session session = null;
+        param.put(resourceResolverFactory.SUBSERVICE, "readService");
         String sqlStatement = "SELECT * FROM [cq:Page] AS page WHERE ISDESCENDANTNODE(page ,\"/content/anf-code-challenge/us/en\") " +
                 "AND page.[jcr:content/anfCodeChallenge] IS NOT NULL";
 
-        try {
-            resourceResolver = resolverFactory.getServiceResourceResolver(param);
-            session = resourceResolver.adaptTo(Session.class);
+        try (ResourceResolver resourceResolver = resourceResolverFactory.getServiceResourceResolver(param)){
+            Session session = resourceResolver.adaptTo(Session.class);
             queryManager = session.getWorkspace().getQueryManager();
             javax.jcr.query.Query query = queryManager.createQuery(sqlStatement, "JCR-SQL2");
             query.setLimit(10);
@@ -113,13 +99,6 @@ public class FetchPageServiceImpl implements FetchPageService {
             }
         } catch (RepositoryException | LoginException | JSONException e) {
             logger.error("Exception in getPageList method: {}", e);
-        } finally {
-            if(resourceResolver.isLive()){
-                resourceResolver.close();
-            }
-            if(session.isLive()){
-                session.logout();
-            }
         }
         return json.toString();
     }

@@ -63,7 +63,7 @@ public class GetCountriesServiceImpl implements GetCountriesService {
     }
 
     /**
-     * Reads a inputStream.
+     * Reads an inputStream.
      *
      * @param inputStream inputStream of JSON file content
      * @param resourceResolver a resource resolver
@@ -82,7 +82,6 @@ public class GetCountriesServiceImpl implements GetCountriesService {
                     valueMap.put("text", value);
                     return new ValueMapResource(resourceResolver, new ResourceMetadata(), "nt:unstructured", valueMap);
                 }));
-
     }
 
     /**

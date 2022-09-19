@@ -32,7 +32,7 @@ public class NewsFeedServiceTest {
 
 
     @BeforeEach
-    public void setUp() throws RepositoryException {
+    public void setUp() {
         context.load().json(TEST_CONTENT_DATA_JSON, "/var/commerce/products/anf-code-challenge/newsData");
         resourceResolverFactory = mock(ResourceResolverFactory.class);
         resourceResolver = mock(ResourceResolver.class);

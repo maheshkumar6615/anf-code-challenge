@@ -13,8 +13,8 @@
             type: "POST",
             url: "/bin/saveUserDetails",
             data: formData,
-            success: function(json) {
-                if (json.localeCompare("Successful") == 0) {
+            success: function(data) {
+                if (data && data.localeCompare("Successful") == 0) {
                     $('#error-submission').hide();
                     $('#successful-form-submission').show();
                 } else {

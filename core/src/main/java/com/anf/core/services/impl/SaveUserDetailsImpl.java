@@ -63,73 +63,52 @@ public class SaveUserDetailsImpl implements SaveUserDetails {
      */
     private String saveUserDetails(SlingHttpServletRequest request) {
         logger.debug("inside save user details");
-        ResourceResolver resourceResolver = getResourceResolver();
-        Resource resource = resourceResolver.getResource(saveUserDetailsPath);
-        Session session = resourceResolver.adaptTo(Session.class);
-        Node node = resource.adaptTo(Node.class);
-        try {
+        Map<String, Object> param = new HashMap<>();
+        param.put(resourceResolverFactory.SUBSERVICE, "writeService");
+        try (ResourceResolver resourceResolver = resourceResolverFactory.getServiceResourceResolver(param)){
+            Resource resource = resourceResolver.getResource(saveUserDetailsPath);
+            Session session = resourceResolver.adaptTo(Session.class);
+            Node node = resource.adaptTo(Node.class);
             logger.debug("inside save user details try: {}", node.getPath());
             node.setProperty("firstName", request.getParameter("firstName"));
             node.setProperty("lastName", request.getParameter("lastName"));
             node.setProperty("age", request.getParameter("age"));
             node.setProperty("country", request.getParameter("country"));
             session.save();
-        } catch (RepositoryException e) {
+        } catch (RepositoryException | LoginException e) {
             logger.error("repository exception when saving user details: {}", e);
-        } finally {
-            session.logout();
-            resourceResolver.close();
         }
         return "Successful";
     }
 
     /**
-     * Reads the age from SlingHttpServletRequest.
+     * Reads the age from SlingHttpServletRequest & validates the age
      * @param request a SlingHttpServletRequest
      * @return a Boolean
      */
     private Boolean validateAge(SlingHttpServletRequest request) {
-
         String age = request.getParameter("age");
-        final ResourceResolver resourceResolver = getResourceResolver();
-        Resource resource = resourceResolver.getResource(ageInfoLocation);
-
-        Node node = resource.adaptTo(Node.class);
-        try {
+        Map<String, Object> param = new HashMap<>();
+        param.put(resourceResolverFactory.SUBSERVICE, "readService");
+        try (ResourceResolver resolver = resourceResolverFactory.getServiceResourceResolver(param)){
+            Resource resource = resolver.getResource(ageInfoLocation);
+            Node node = resource.adaptTo(Node.class);
             String minAge = node.hasProperty("minAge") ? node.getProperty("minAge").getString() : "";
             String maxAge = node.hasProperty("maxAge") ? node.getProperty("maxAge").getString() : "";
             logger.debug("age: {}, min age: {}, max age: {}", age, minAge, maxAge);
             return getIntegerValue(age) > getIntegerValue(minAge) && getIntegerValue(age) < getIntegerValue(maxAge);
-        } catch (RepositoryException e) {
-            logger.error("repository exception when validating age: {}", e);
-        } finally {
-            resourceResolver.close();
+        } catch (RepositoryException | LoginException e) {
+            logger.error("Exception when validating age: {}", e);
         }
         return false;
     }
 
     /**
-     * Reads the integer.
+     * Reads the String value of age.
      * @param age a String
      * @return int
      */
     private int getIntegerValue(String age) {
         return Integer.parseInt(age);
-    }
-
-    /**
-     * Method to create resource resolver.
-     * @return ResourceResolver
-     */
-    private ResourceResolver getResourceResolver() {
-        Map<String, Object> param = new HashMap<>();
-        param.put(resourceResolverFactory.SUBSERVICE, "writeService");
-        ResourceResolver resourceResolver = null;
-        try {
-            resourceResolver = resourceResolverFactory.getServiceResourceResolver(param);
-        } catch (LoginException e) {
-            logger.error("LoginException exception when creating ResourceResolver : {}", e);
-        }
-        return resourceResolver;
     }
 }
