@@ -1,0 +1,161 @@
+<sly data-sly-use.regobj="com.kelloggs.engage.core.models.LiteRegistrationModel"></sly>
+${regobj.formDescription @ context='html'}
+<form>
+	<div>
+
+		<fieldset class="k1p-form-userinfo k1p-form-twocol">
+			<sly data-sly-list.item="${regobj.formLabels}">
+				<sly data-sly-test="${item.choosedataType == 'text'}">
+					<sly data-sly-test.required="${item.isMandatory}">
+						<div>
+							<input id="k1p-${item.labelId}" class="k1p-form-placeholder" type="${item.choosedataType}" placeholder="${item.label}* " required>
+							<label for="k1p-${item.labelId}" >${item.label}
+								<sly data-sly-test="${item.isMandatory == 'true'}"> <span>*</span> </sly>
+							</label>
+						</div>
+					</sly>
+					<sly data-sly-test="${!required}">
+						<div>
+							<input id="k1p-${item.labelId}" class="k1p-form-placeholder" type="${item.choosedataType}" placeholder="${item.label}* ">
+							<label for="k1p-${item.labelId}">${item.label}
+								<sly data-sly-test="${item.isMandatory == 'true'}"> <span>*</span> </sly>
+							</label>
+						</div>
+					</sly>
+				</sly>
+				<sly data-sly-test="${item.choosedataType == 'date'}">
+					<sly data-sly-test.requireddate="${item.isMandatory}">
+						<div>
+							<input id="k1p-${item.labelId}" type="${item.choosedataType}" class="k1p-form-placeholder k1p-date-placeholder" required>
+							<label for="k1p-${item.labelId}">${item.label}
+								<sly data-sly-test="${item.isMandatory == 'true'}"> <span>*</span> </sly>
+							</label>
+						</div>
+					</sly>
+					<sly data-sly-test="${!requireddate}">
+						<div>
+							<input id="k1p-${item.labelId}" type="${item.choosedataType}" class="k1p-form-placeholder">
+							<label for="k1p-${item.labelId}">${item.label}
+								<sly data-sly-test="${item.isMandatory == 'true'}"> <span>*</span> </sly>
+							</label>
+						</div>
+					</sly>
+				</sly>
+                <sly data-sly-test="${item.choosedataType == 'dropdown'}">
+					<sly data-sly-test.required="${item.isMandatory}">
+						<!--/* <div>
+							<input id="k1p-${item.labelId}" class="k1p-form-placeholder" type="${item.choosedataType}" placeholder="${item.label}* " required>
+							<label for="k1p-${item.labelId}" >${item.label}
+								<sly data-sly-test="${item.isMandatory == 'true'}"> <span>*</span> </sly>
+							</label>
+						</div> */-->
+
+                        <div>
+							<div class="select-wrapper" id="csvfilePath" data-dropDownPath="${item.csvfilepath}">
+								<select id="k1p-${item.labelId}" class="k1p-form-placeholder" required="">
+
+								</select>
+								<label for="k1p-${item.labelId}">${item.label}
+									<sly data-sly-test="${item.isMandatory == 'true'}"> <span>*</span> </sly>
+                                </label>
+							</div>
+						</div>
+					</sly>
+					<sly data-sly-test="${!required}">
+                        <div>
+							<div class="select-wrapper" id="csvfilePath" data-dropDownPath="${item.csvfilepath}" >
+								<select id="k1p-shoesize" class="k1p-form-placeholder">
+								</select>
+								<label for="k1p-shoesize">Shoe Size</label>
+							</div>
+						</div>
+					</sly>
+				</sly>
+			</sly>
+		</fieldset>
+        <fieldset class="k1p-form-userinfo k1p-form-twocol">
+			<sly data-sly-list.item="${regobj.formLabels}">
+            	   <sly data-sly-test="${item.choosedataType == 'checkbox'}">
+					<sly data-sly-test.required="${item.isMandatory}">
+                    	<!-- Checkbox div starts -->
+                        <div class="k1pform-checkbox ${item.labelId}-container">
+							<sly data-sly-list.cbvalue="${item.getFormcheckboxvalues.listChildren}">
+                                <input type="checkbox" id="k1p-${item.labelId}-${cbvalueList.count}">
+                                <label for="k1p-${item.labelId}-${cbvalueList.count}">${cbvalue.checkboxvalue}</label>
+                        	</sly>
+                        </div>
+                        <!-- Checkbox div end-->
+					</sly>
+					<sly data-sly-test="${!required}">
+                    	<!-- Checkbox div starts-->
+						<div class="k1pform-checkbox ${item.labelId}-container">
+							<sly data-sly-list.cbvalue="${item.getFormcheckboxvalues.listChildren}">
+                                <input type="checkbox" id="k1p-${item.labelId}-${cbvalueList.count}">
+                                <label for="k1p-${item.labelId}-${cbvalueList.count}">${cbvalue.checkboxvalue}</label>
+                        	</sly>
+                        </div>
+                        <!-- Checkbox div ends-->
+					</sly>
+				</sly>
+                <sly data-sly-test="${item.choosedataType == 'radiobutton'}">
+					<sly data-sly-test.required="${item.isMandatory}">
+                    	<!-- Radiobutton div starts-->
+                        <div class="k1pform-radiobtn ${item.labelId}-container">
+                        	<sly data-sly-list.rbvalue="${item.getFormradiobuttonvalues.listChildren}">
+                                <input type="radio" id="k1p-${item.labelId}-${rbvalueList.count}" name="k1p-${item.labelId}">
+                                <label for="k1p-${item.labelId}-${rbvalueList.count}">${rbvalue.radiobuttonvalue}</label>
+                        	</sly>
+                        </div>
+                        <!-- Radiobutton div ends-->
+					</sly>
+					<sly data-sly-test="${!required}">
+                    	<!-- Radiobutton div starts-->
+                        <div class="k1pform-radiobtn ${item.labelId}-container">
+                        	<sly data-sly-list.rbvalue="${item.getFormradiobuttonvalues.listChildren}">
+								<input type="radio" id="k1p-${item.labelId}-${rbvalueList.count}" name="k1p-${item.labelId}">
+                                <label for="k1p-${item.labelId}-${rbvalueList.count}">${rbvalue.radiobuttonvalue}</label>
+                        	</sly>
+                        </div>
+                        <!-- Radiobutton div ends-->
+					</sly>
+				</sly>
+                <sly data-sly-test="${item.choosedataType == 'textarea'}">
+					<sly data-sly-test.required="${item.isMandatory}">
+                        <div class="k1pform-textarea ${item.labelId}-container">
+                            <label for="k1p-${item.labelId}">${item.label}
+                                <sly data-sly-test="${item.isMandatory == 'true'}"> <span>*</span> </sly>
+                            </label>
+                            <textarea id="k1p-${item.labelId}" name="k1p-${item.labelId}" placeholder="${item.textareaplaceholder}" style="height:200px"></textarea>
+                        </div>    
+					</sly>
+					<sly data-sly-test="${!required}">
+                    	<div class="k1pform-textarea ${item.labelId}-container">
+							<label for="k1p-${item.labelId}">${item.label}</label>
+    						<textarea id="k1p-${item.labelId}" name="k1p-${item.labelId}" placeholder="${item.textareaplaceholder}" style="height:200px"></textarea>
+                        </div>
+					</sly>
+				</sly>
+            </sly>
+		</fieldset>
+		<sly data-sly-list.item1="${regobj.termsAndConditions}">
+			<fieldset class="k1p-form-legal" required>
+				<div>
+					<input type="checkbox" id="k1p-terms">
+					<label for="k1p-terms">${item1.text @ context='html'}</label>
+				</div>
+			</fieldset>
+		</sly>
+		<fieldset class="k1p-form-captcha">
+			<div id="recaptcha" class="g-recaptcha" data-sitekey="${regobj.siteKey}" data-callback="correctCaptcha">&nbsp;</div> 
+         </fieldset>
+		<div class="k1p-form-errors k1p-user-errors" aria-live="assertive" id="lr-error-text" data-firstname-error="${properties.fnvalidtext}" data-lastname-error="${properties.lnvalidtext}" 
+    	data-email-error="${properties.emailvalidtext}" data-email-error="${properties.emailvalidtext}" 
+        data-email2-error="${properties.emailformvalidtext}" data-confemail-error="${properties.confemailvalidtext}"
+        data-emailmatch-error="${properties.emailatchvalidtext}" data-date-error="${properties.datevalidtext}" 
+        data-agecutoff-error="${properties.agecutoffvalidtext}" 
+        data-terms-error="${properties.termsvalidtext}" data-captcha-error="${properties.captchavalidtext}"  data-shoesize-error="${properties.shoesizevalidtext}" data-firstname-formaterror="${properties.fnvalidformat}" data-lastname-formaterror="${properties.lnvalidformat}"></div>
+		<button id="k1p-step1-submit" class="button-visually-disabled">${regobj.buttonText}</button>
+	</div>
+</form>
+<span id="progid" data-programid="${pageProperties.programid}" data-defaultsite="${pageProperties.defaultSite}"></span>
+<sly data-sly-use.clientLib="/libs/granite/sightly/templates/clientlib.html" data-sly-call="${clientLib.js @ categories= 'engage.registration'}"> </sly>
