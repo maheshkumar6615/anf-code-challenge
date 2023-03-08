@@ -28,16 +28,18 @@
                                         jcr:primaryType="nt:unstructured"
                                         sling:resourceType="granite/ui/components/coral/foundation/container">
                                         <items jcr:primaryType="nt:unstructured">
-                                            <countries
+                                            <thankYouPage
                                                     jcr:primaryType="nt:unstructured"
-                                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
-                                                    fieldLabel="Countries"
-                                                    name="./country">
-                                                <datasource
-                                                        jcr:primaryType="nt:unstructured"
-                                                        sling:resourceType="/apps/anf-code-challenge/components/utils/countries"
-                                                        name="countries"/>
-                                            </countries>
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                    fieldLabel="Select Thank you page Path"
+                                                    name="./thankYouPage"
+                                                    rootPath="/content"/>
+                                            <errorPage
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                    fieldLabel="Select Error Page Path"
+                                                    name="./errorPage"
+                                                    rootPath="/content"/>
                                         </items>
                                     </column>
                                 </items>
